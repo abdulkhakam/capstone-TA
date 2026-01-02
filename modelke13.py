@@ -3,9 +3,9 @@ import json
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-# ===============================
+
 # Konfigurasi Path
-# ===============================
+
 DATA_DIR = r"C:/Users/LENOVO/OneDrive - mail.unnes.ac.id/kuliah/skripsi/waste-categorized-3"
 ARTIFACTS_DIR = r"C:/Users/LENOVO/OneDrive - mail.unnes.ac.id/kuliah/skripsi"
 os.makedirs(ARTIFACTS_DIR, exist_ok=True)
@@ -81,7 +81,6 @@ history = model.fit(train_gen, validation_data=val_gen, epochs=EPOCHS)
 
 
 # Simpan model
-
 # Format Keras
 model.save(KERAS_PATH)
 # Format H5 
@@ -89,7 +88,6 @@ model.save(H5_PATH)
 
 
 # Konversi ke TFLite
-
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
 
 converter.optimizations = [tf.lite.Optimize.DEFAULT]
@@ -99,3 +97,4 @@ with open(TFLITE_PATH, "wb") as f:
     f.write(tflite_model)
 
 print(f"[DONE] Disimpan ke:\n- {KERAS_PATH}\n- {H5_PATH}\n- {TFLITE_PATH}\n- {CLASS_IDX_JSON}")
+
